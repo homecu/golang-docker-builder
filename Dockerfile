@@ -4,6 +4,8 @@ ENV GOLANG_VERSION 1.8.3
 ENV GOLANG_ARCH linux-amd64
 ENV GOLANG_CSUM 1862f4c3d3907e59b04a757cfda0ea7aa9ef39274af99a784f5be843c80c6772
 ENV GOROOT /usr/local/go
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN set -x \
     && yum -y update \
@@ -12,4 +14,7 @@ RUN set -x \
     && echo "${GOLANG_CSUM}  go.tar.gz" | sha256sum -c - \
     && mkdir -p ${GOROOT} \
     && tar -zxf go.tar.gz -C ${GOROOT} --strip-components=1 \
-    && rm go.tar.gz
+    && rm go.tar.gz \
+    && mkdir -p "${GOPATH}/src" "${GOPATH}/bin"
+
+WORKDIR $GOPATH
