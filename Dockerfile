@@ -1,4 +1,4 @@
-FROM centos:7.3.1611
+FROM centos:7.6.1810
 
 ENV GOLANG_VERSION 1.8.3
 ENV GOLANG_ARCH linux-amd64
