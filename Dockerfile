@@ -4,7 +4,6 @@ ENV GOLANG_VERSION 1.12.9
 ENV GOLANG_ARCH linux-amd64
 ENV GOLANG_CSUM ac2a6efcc1f5ec8bdc0db0a988bb1d301d64b6d61b7e8d9e42f662fbb75a2b9b
 ENV GOROOT /usr/local/go
-ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN set -x \
@@ -15,6 +14,6 @@ RUN set -x \
     && mkdir -p ${GOROOT} \
     && tar -zxf go.tar.gz -C ${GOROOT} --strip-components=1 \
     && rm go.tar.gz \
-    && mkdir -p "${GOPATH}/src" "${GOPATH}/bin"
+    && mkdir -p /go/src/
 
-WORKDIR $GOPATH
+WORKDIR /go/src
